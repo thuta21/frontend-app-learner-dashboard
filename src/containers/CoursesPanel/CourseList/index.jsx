@@ -15,6 +15,7 @@ export const CourseList = ({ courseListData }) => {
   const {
     filterOptions, setPageNumber, numPages, showFilters, visibleList,
   } = courseListData;
+
   const isCollapsed = useIsCollapsed();
   return (
     <>

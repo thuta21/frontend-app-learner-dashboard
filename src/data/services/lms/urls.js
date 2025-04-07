@@ -27,6 +27,8 @@ const programsUrl = () => baseAppUrl('/dashboard/programs');
 export const creditPurchaseUrl = (courseId) => `${getEcommerceUrl()}/credit/checkout/${courseId}/`;
 export const creditRequestUrl = (providerId) => `${getApiUrl()}/credit/v1/providers/${providerId}/request/`;
 
+export const getCourseProgressCompletionApiUrl = (courseId) => (`${getApiUrl()}/course_home/progress/${courseId}`);
+
 export default StrictDict({
   getApiUrl,
   baseAppUrl,
@@ -39,4 +41,5 @@ export default StrictDict({
   learningMfeUrl,
   programsUrl,
   updateEmailSettings,
+  getCourseProgressCompletionApiUrl,
 });

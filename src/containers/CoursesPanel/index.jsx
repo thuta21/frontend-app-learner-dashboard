@@ -11,6 +11,7 @@ import NoCoursesViewSlot from 'plugin-slots/NoCoursesViewSlot';
 
 import { useCourseListData } from './hooks';
 
+
 // import messages from './messages';
 
 import './index.scss';

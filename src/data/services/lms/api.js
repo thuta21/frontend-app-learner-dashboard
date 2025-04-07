@@ -1,4 +1,6 @@
 import eventNames from 'tracking/constants';
+import { getAuthenticatedHttpClient } from '@edx/frontend-platform/auth';
+
 import {
   client,
   get,
@@ -10,7 +12,7 @@ import {
   unenrollmentAction,
   enableEmailsAction,
 } from './constants';
-import urls from './urls';
+import urls, { getCourseProgressCompletionApiUrl } from './urls';
 import * as module from './api';
 
 /*********************************************************************************
@@ -64,6 +66,12 @@ export const createCreditRequest = ({ providerId, courseId, username }) => post(
   urls.creditRequestUrl(providerId),
   { course_key: courseId, username },
 );
+
+export async function getCourseProgressData(courseId) {
+  const url = getCourseProgressCompletionApiUrl(courseId);
+  const { data } = await getAuthenticatedHttpClient().get(url);
+  return data;
+}
 
 export default {
   initializeList,
