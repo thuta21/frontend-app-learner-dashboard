@@ -17,7 +17,17 @@ export const CourseCardTitle = ({ cardId }) => {
   );
   const { disableCourseTitle } = useActionDisabledState(cardId);
   return (
-    <h3>
+    <h3
+      style={{
+        fontSize: '20px',
+        height: '50px',
+        display: '-webkit-box',
+        WebkitLineClamp: 2,
+        WebkitBoxOrient: 'vertical',
+        overflow: 'hidden',
+        textOverflow: 'ellipsis',
+      }}
+    >
       {disableCourseTitle ? (
         <span className="course-card-title" data-testid="CourseCardTitle">{courseName}</span>
       ) : (

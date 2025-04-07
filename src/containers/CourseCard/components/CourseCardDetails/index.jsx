@@ -8,22 +8,22 @@ import './index.scss';
 
 export const CourseCardDetails = ({ cardId }) => {
   const {
-    providerName,
-    accessMessage,
+    // providerName,
+    // accessMessage,
     isEntitlement,
     isFulfilled,
     canChange,
     openSessionModal,
-    courseNumber,
+    // courseNumber,
     changeOrLeaveSessionMessage,
   } = useCardDetailsData({ cardId });
 
   return (
     <span className="small" data-testid="CourseCardDetails">
-      {providerName} • {courseNumber}
-      {!(isEntitlement && !isFulfilled) && accessMessage && (
+      {/* {providerName} • {courseNumber} */}
+      {/* {!(isEntitlement && !isFulfilled) && accessMessage && (
         ` • ${accessMessage}`
-      )}
+      )} */}
       {isEntitlement && isFulfilled && canChange ? (
         <>
           {' • '}

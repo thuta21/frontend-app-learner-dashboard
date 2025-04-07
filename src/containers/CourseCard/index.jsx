@@ -4,10 +4,10 @@ import PropTypes from 'prop-types';
 import { Card } from '@openedx/paragon';
 
 import { useIsCollapsed } from './hooks';
-import CourseCardBanners from './components/CourseCardBanners';
+// import CourseCardBanners from './components/CourseCardBanners';
 import CourseCardImage from './components/CourseCardImage';
-import CourseCardMenu from './components/CourseCardMenu';
-import CourseCardActions from './components/CourseCardActions';
+// import CourseCardMenu from './components/CourseCardMenu';
+// import CourseCardActions from './components/CourseCardActions';
 import CourseCardDetails from './components/CourseCardDetails';
 import CourseCardTitle from './components/CourseCardTitle';
 
@@ -19,9 +19,20 @@ export const CourseCard = ({
   const isCollapsed = useIsCollapsed();
   const orientation = isCollapsed ? 'vertical' : 'horizontal';
   return (
-    <div className="mb-4.5 course-card" id={cardId} data-testid="CourseCard">
-      <Card orientation={orientation}>
+    <div className="mb-4.5" id={cardId} data-testid="CourseCard">
+      <Card orientation={orientation} className="course-card-width">
         <div className="d-flex flex-column w-100">
+          <CourseCardImage cardId={cardId} orientation="horizontal" />
+          <Card.Body>
+            <Card.Header
+              title={<CourseCardTitle cardId={cardId} />}
+            />
+            <Card.Section className="pt-0">
+              <CourseCardDetails cardId={cardId} />
+            </Card.Section>
+          </Card.Body>
+        </div>
+        {/* <div className="d-flex flex w-100">
           <div {...(!isCollapsed && { className: 'd-flex' })}>
             <CourseCardImage cardId={cardId} orientation="horizontal" />
             <Card.Body>
@@ -38,7 +49,7 @@ export const CourseCard = ({
             </Card.Body>
           </div>
           <CourseCardBanners cardId={cardId} />
-        </div>
+        </div> */}
       </Card>
     </div>
   );

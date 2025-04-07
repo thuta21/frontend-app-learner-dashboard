@@ -11,6 +11,8 @@ import useActionDisabledState from './hooks';
 
 import messages from '../messages';
 
+import '../CourseCard.scss';
+
 const { courseImageClicked } = track.course;
 
 export const CourseCardImage = ({ cardId, orientation }) => {
@@ -20,14 +22,14 @@ export const CourseCardImage = ({ cardId, orientation }) => {
   const { isVerified } = reduxHooks.useCardEnrollmentData(cardId);
   const { disableCourseTitle } = useActionDisabledState(cardId);
   const handleImageClicked = reduxHooks.useTrackCourseEvent(courseImageClicked, cardId, homeUrl);
-  const wrapperClassName = `pgn__card-wrapper-image-cap d-inline-block overflow-visible ${orientation}`;
+  const wrapperClassName = `d-inline-block overflow-visible ${orientation}`;
   const image = (
     <>
       <img
-        // w-100 is necessary for images on Safari, otherwise stretches full height of the image
-        // https://stackoverflow.com/a/44250830
-        className="pgn__card-image-cap w-100 show"
-        src={bannerImgSrc}
+        className="show rounded-top course-card-width"
+        style={{ height: '170px', objectFit: 'cover' }}
+        src={bannerImgSrc || '/course.jpg'}
+        onError={(e) => { e.target.onerror = null; e.target.src = '/course.jpg'; }}
         alt={formatMessage(messages.bannerAlt)}
       />
       {

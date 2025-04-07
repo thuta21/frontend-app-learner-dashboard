@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { useIntl } from '@edx/frontend-platform/i18n';
+// import { useIntl } from '@edx/frontend-platform/i18n';
 
 import { reduxHooks } from 'hooks';
 import {
@@ -11,7 +11,7 @@ import NoCoursesViewSlot from 'plugin-slots/NoCoursesViewSlot';
 
 import { useCourseListData } from './hooks';
 
-import messages from './messages';
+// import messages from './messages';
 
 import './index.scss';
 
@@ -21,13 +21,13 @@ import './index.scss';
  * @returns List of courses as CourseCards or empty state
 */
 export const CoursesPanel = () => {
-  const { formatMessage } = useIntl();
+  // const { formatMessage } = useIntl();
   const hasCourses = reduxHooks.useHasCourses();
   const courseListData = useCourseListData();
   return (
-    <div className="course-list-container">
+    <div>
       <div className="course-list-heading-container">
-        <h2 className="course-list-title">{formatMessage(messages.myCourses)}</h2>
+        {/* <h2 className="course-list-title">{formatMessage(messages.myCourses)}</h2> */}
         <div className="course-filter-controls-container">
           <CourseFilterControls {...courseListData.filterOptions} />
         </div>

@@ -1,9 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import { Container, Col, Row } from '@openedx/paragon';
+// Col, Row
+import { Container } from '@openedx/paragon';
 
-import WidgetSidebarSlot from 'plugin-slots/WidgetSidebarSlot';
+// import WidgetSidebarSlot from 'plugin-slots/WidgetSidebarSlot';
 
 import hooks from './hooks';
 
@@ -26,7 +27,7 @@ export const columnConfig = {
 
 export const DashboardLayout = ({ children }) => {
   const {
-    isCollapsed,
+    // isCollapsed,
     sidebarShowing,
   } = hooks.useDashboardLayoutData();
 
@@ -36,15 +37,16 @@ export const DashboardLayout = ({ children }) => {
 
   return (
     <Container fluid size="xl">
-      <Row>
-        <Col {...courseListColumnProps} className="course-list-column">
-          {children}
-        </Col>
-        <Col {...columnConfig.sidebar} className="sidebar-column">
+      {/* <Row> */}
+      <div {...courseListColumnProps} className="course-list-column">
+        {children}
+      </div>
+
+      {/* <Col {...columnConfig.sidebar} className="sidebar-column">
           {!isCollapsed && (<h2 className="course-list-title">&nbsp;</h2>)}
           <WidgetSidebarSlot />
-        </Col>
-      </Row>
+        </Col> */}
+      {/* </Row> */}
     </Container>
   );
 };

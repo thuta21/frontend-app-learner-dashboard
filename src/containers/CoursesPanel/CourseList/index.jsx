@@ -9,6 +9,8 @@ import CourseCard from 'containers/CourseCard';
 
 import { useIsCollapsed } from './hooks';
 
+import '../index.scss';
+
 export const CourseList = ({ courseListData }) => {
   const {
     filterOptions, setPageNumber, numPages, showFilters, visibleList,
@@ -21,9 +23,12 @@ export const CourseList = ({ courseListData }) => {
           <ActiveCourseFilters {...filterOptions} />
         </div>
       )}
-      <div className="d-flex flex-column flex-grow-1">
+
+      <div className="parent">
         {visibleList.map(({ cardId }) => (
-          <CourseCard key={cardId} cardId={cardId} />
+          <div key={cardId} className="div1">
+            <CourseCard cardId={cardId} />
+          </div>
         ))}
         {numPages > 1 && (
           <Pagination
