@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { useIntl } from '@edx/frontend-platform/i18n';
 
 import {
-  Button,
+  // Button,
   Form,
   Icon,
   ModalPopup,
@@ -12,32 +12,34 @@ import {
   useWindowSize,
   ModalCloseButton,
 } from '@openedx/paragon';
-import { Close, Tune } from '@openedx/paragon/icons';
+//  Tune
+import { Close } from '@openedx/paragon/icons';
 
-import { reduxHooks } from 'hooks';
+// import { reduxHooks } from 'hooks';
 
 import FilterForm from './components/FilterForm';
-import SortForm from './components/SortForm';
+// import SortForm from './components/SortForm';
 import useCourseFilterControlsData from './hooks';
 import messages from './messages';
 
 import './index.scss';
+import Filter from '../../components/Filter';
 
 export const CourseFilterControls = ({
-  sortBy,
+  // sortBy,
   setSortBy,
   filters,
 }) => {
   const { formatMessage } = useIntl();
-  const hasCourses = reduxHooks.useHasCourses();
+  // const hasCourses = reduxHooks.useHasCourses();
   const {
     isOpen,
-    open,
+    // open,
     close,
     target,
-    setTarget,
+    // setTarget,
     handleFilterChange,
-    handleSortChange,
+    // handleSortChange,
   } = useCourseFilterControlsData({
     filters,
     setSortBy,
@@ -47,7 +49,8 @@ export const CourseFilterControls = ({
 
   return (
     <div id="course-filter-controls">
-      <Button
+      <Filter />
+      {/* <Button
         ref={setTarget}
         variant="outline-primary"
         iconBefore={Tune}
@@ -55,7 +58,7 @@ export const CourseFilterControls = ({
         disabled={!hasCourses}
       >
         {formatMessage(messages.refine)}
-      </Button>
+      </Button> */}
       <Form>
         {isMobile
           ? (
@@ -72,9 +75,9 @@ export const CourseFilterControls = ({
               <div className="filter-form-row">
                 <FilterForm {...{ filters, handleFilterChange }} />
               </div>
-              <div className="filter-form-row text-left m-1">
+              {/* <div className="filter-form-row text-left m-1">
                 <SortForm {...{ sortBy, handleSortChange }} />
-              </div>
+              </div> */}
               <div className="pgn__modal-close-container">
                 <ModalCloseButton variant="tertiary" onClick={close}>
                   <Icon src={Close} />
@@ -95,10 +98,10 @@ export const CourseFilterControls = ({
                 <div className="filter-form-col">
                   <FilterForm {...{ filters, handleFilterChange }} />
                 </div>
-                <hr className="h-100 bg-primary-200 mx-3 my-0" />
+                {/* <hr className="h-100 bg-primary-200 mx-3 my-0" />
                 <div className="filter-form-col text-left m-1">
                   <SortForm {...{ sortBy, handleSortChange }} />
-                </div>
+                </div> */}
               </div>
             </ModalPopup>
           )}
@@ -107,7 +110,7 @@ export const CourseFilterControls = ({
   );
 };
 CourseFilterControls.propTypes = {
-  sortBy: PropTypes.string.isRequired,
+  // sortBy: PropTypes.string.isRequired,
   setSortBy: PropTypes.func.isRequired,
   filters: PropTypes.arrayOf(PropTypes.string).isRequired,
 };

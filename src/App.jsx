@@ -6,7 +6,6 @@ import { logError } from '@edx/frontend-platform/logging';
 import { initializeHotjar } from '@edx/frontend-enterprise-hotjar';
 
 import { ErrorPage, AppContext } from '@edx/frontend-platform/react';
-import FooterSlot from '@openedx/frontend-slot-footer';
 import { Alert } from '@openedx/paragon';
 
 import { RequestKeys } from 'data/constants/requests';
@@ -26,6 +25,7 @@ import AppWrapper from 'containers/WidgetContainers/AppWrapper';
 import LearnerDashboardHeader from 'containers/LearnerDashboardHeader';
 
 import { getConfig } from '@edx/frontend-platform';
+import Footer from './components/Footer';
 import messages from './messages';
 import './App.scss';
 
@@ -77,7 +77,7 @@ export const App = () => {
         <title>{formatMessage(messages.pageTitle)}</title>
         <link rel="shortcut icon" href={getConfig().FAVICON_URL} type="image/x-icon" />
       </Helmet>
-      <div>
+      <div className="app-container">
         <AppWrapper>
           <LearnerDashboardHeader />
           <main id="main">
@@ -91,7 +91,7 @@ export const App = () => {
               )}
           </main>
         </AppWrapper>
-        <FooterSlot />
+        <Footer />
       </div>
     </>
   );

@@ -6,7 +6,7 @@ import { Card } from '@openedx/paragon';
 
 import { useIsCollapsed } from './hooks';
 import CourseCardImage from './components/CourseCardImage';
-import CourseCardDetails from './components/CourseCardDetails';
+// import CourseCardDetails from './components/CourseCardDetails';
 import CourseCardTitle from './components/CourseCardTitle';
 import './CourseCard.scss';
 import { useCourseProgressData } from '../CoursesPanel/progress-hooks';
@@ -22,23 +22,24 @@ export const CourseCard = ({
 
   return (
     <div className="mb-4.5" id={cardId} data-testid="CourseCard">
-      <Card orientation={orientation} className="course-card-width">
+      <Card orientation={orientation} className="course-card-width" style={{ borderRadius: '12px' }}>
         <div className="d-flex flex-column w-100">
           <CourseCardImage cardId={cardId} orientation="horizontal" />
 
-          {sectionScores && sectionScores.length > 0 && (
-            <p>Topic: {sectionScores.length}</p>
-          )}
-          <Card.Body>
-            <Card.Header
-              title={<CourseCardTitle cardId={cardId} />}
-            />
-            {/* Progress Bar Section */}
-            <div className="mb-3">
-              <div className="text-sm text-muted mb-1">
-                {completionPercentage}% complete
-              </div>
-              <div className="w-100 bg-gray-300 rounded" style={{ height: '8px' }}>
+          <Card.Body className="d-flex flex-column justify-content-between h-100">
+            <div className="d-flex justify-content-between px-3 pt-3" style={{ marginBottom: '16px' }}>
+              <span className="text-muted" style={{ fontSize: '16px' }}>
+                {sectionScores?.length ? `${sectionScores.length} topics` : '\u00A0'}
+              </span>
+              {/* <span className="text-sm text-muted">36 hrs</span> */}
+            </div>
+
+            <div className="px-3" style={{ marginBottom: '14px' }}>
+              <CourseCardTitle cardId={cardId} />
+            </div>
+
+            <div className="px-3 pb-4">
+              <div className="w-100 bg-gray-300 rounded" style={{ height: '8px', marginBottom: '8px' }}>
                 <div
                   className="bg-success rounded"
                   style={{
@@ -48,10 +49,10 @@ export const CourseCard = ({
                   }}
                 />
               </div>
+              <div className="text-muted mb-1" style={{ fontSize: '16px' }}>
+                {completionPercentage}% complete
+              </div>
             </div>
-            <Card.Section className="pt-0">
-              <CourseCardDetails cardId={cardId} />
-            </Card.Section>
           </Card.Body>
         </div>
       </Card>

@@ -11,10 +11,10 @@ import messages from '../messages';
 
 export const filterOrder = [
   FilterKeys.inProgress,
-  FilterKeys.notStarted,
+  // FilterKeys.notStarted,
   FilterKeys.done,
-  FilterKeys.notEnrolled,
-  FilterKeys.upgraded,
+  // FilterKeys.notEnrolled,
+  // FilterKeys.upgraded,
 ];
 
 export const FilterForm = ({

@@ -29,13 +29,14 @@ export const CourseCardTitle = ({ cardId }) => {
       }}
     >
       {disableCourseTitle ? (
-        <span className="course-card-title" data-testid="CourseCardTitle">{courseName}</span>
+        <span className="course-card-title" style={{ color: '#272D27' }} data-testid="CourseCardTitle">{courseName}</span>
       ) : (
         <a
           href={homeUrl}
           className="course-card-title"
           data-testid="CourseCardTitle"
           onClick={handleTitleClicked}
+          style={{ color: '#272D27' }}
         >
           {courseName}
         </a>

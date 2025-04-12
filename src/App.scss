@@ -67,3 +67,12 @@ $input-focus-box-shadow: $input-box-shadow; // hack to get upgrade to paragon 4.
     overflow: hidden;
   }
 }
+.app-container {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.app-container > *:first-child {
+  flex: 1;
+}

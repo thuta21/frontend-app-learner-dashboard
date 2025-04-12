@@ -70,6 +70,7 @@
 
 @media (max-width: 425px) {
   .parent {
+    justify-items: left !important;
     grid-template-columns: 1fr; /* 1 column */
   }
 }

@@ -1,14 +1,14 @@
 @import "@openedx/paragon/scss/core/core";
 
-.course-list-column {
-  padding: 0 map-get($spacers, 4);
-}
+// .course-list-column {
+//   padding: 0 map-get($spacers, 4);
+// }
 
-@media (width: 320px) {
-  .course-list-column {
-    padding: 0 !important;
-  }
-}
+// @media (width: 320px) {
+//   .course-list-column {
+//     padding: 0 !important;
+//   }
+// }
 
 .sidebar-column {
   padding: 0 map-get($spacers, 3) 0 map-get($spacers, 1);

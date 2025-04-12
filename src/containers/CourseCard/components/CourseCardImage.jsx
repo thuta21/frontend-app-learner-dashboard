@@ -26,8 +26,13 @@ export const CourseCardImage = ({ cardId, orientation }) => {
   const image = (
     <>
       <img
-        className="show rounded-top course-card-width"
-        style={{ height: '170px', objectFit: 'cover' }}
+        className="show course-card-width"
+        style={{
+          height: '170px',
+          objectFit: 'cover',
+          borderTopLeftRadius: '12px',
+          borderTopRightRadius: '12px',
+        }}
         src={bannerImgSrc || '/course.jpg'}
         onError={(e) => { e.target.onerror = null; e.target.src = '/course.jpg'; }}
         alt={formatMessage(messages.bannerAlt)}
