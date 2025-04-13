@@ -1,116 +1,104 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
-import { useIntl } from '@edx/frontend-platform/i18n';
-
-import {
-  // Button,
-  Form,
-  Icon,
-  ModalPopup,
-  Sheet,
-  breakpoints,
-  useWindowSize,
-  ModalCloseButton,
-} from '@openedx/paragon';
-//  Tune
-import { Close } from '@openedx/paragon/icons';
-
-// import { reduxHooks } from 'hooks';
-
-import FilterForm from './components/FilterForm';
-// import SortForm from './components/SortForm';
+import { Form } from '@openedx/paragon';
+import { reduxHooks } from 'hooks';
 import useCourseFilterControlsData from './hooks';
-import messages from './messages';
-
 import './index.scss';
-import Filter from '../../components/Filter';
 
 export const CourseFilterControls = ({
-  // sortBy,
   setSortBy,
   filters,
 }) => {
-  const { formatMessage } = useIntl();
-  // const hasCourses = reduxHooks.useHasCourses();
+  const hasCourses = reduxHooks.useHasCourses();
   const {
-    isOpen,
-    // open,
-    close,
-    target,
-    // setTarget,
     handleFilterChange,
-    // handleSortChange,
   } = useCourseFilterControlsData({
     filters,
     setSortBy,
   });
-  const { width } = useWindowSize();
-  const isMobile = width < breakpoints.small.minWidth;
+  const useWatchedCourseCount = () => {
+    const [courseCount, setCourseCount] = useState(() => {
+      const saved = localStorage.getItem('courseCount');
+      return saved ? parseInt(saved, 10) : 0;
+    });
+
+    useEffect(() => {
+      // Sync from other tabs/windows
+      const handleStorage = (event) => {
+        if (event.key === 'courseCount') {
+          setCourseCount(parseInt(event.newValue, 10) || 0);
+        }
+      };
+
+      // Polling fallback for same-tab changes
+      const interval = setInterval(() => {
+        const stored = parseInt(localStorage.getItem('courseCount'), 10) || 0;
+        setCourseCount((prev) => (prev !== stored ? stored : prev));
+      }, 1000); // check every 1s
+
+      window.addEventListener('storage', handleStorage);
+
+      return () => {
+        window.removeEventListener('storage', handleStorage);
+        clearInterval(interval);
+      };
+    }, []);
+
+    return courseCount;
+  };
+
+  const courseCount = useWatchedCourseCount();
 
   return (
     <div id="course-filter-controls">
-      <Filter />
-      {/* <Button
-        ref={setTarget}
-        variant="outline-primary"
-        iconBefore={Tune}
-        onClick={open}
-        disabled={!hasCourses}
-      >
-        {formatMessage(messages.refine)}
-      </Button> */}
-      <Form>
-        {isMobile
-          ? (
-            <Sheet
-              className="w-75"
-              position="left"
-              show={isOpen}
-              onClose={close}
+      <h2 className="learning-tabs__title">My Learning</h2>
+      <div className="filter-toggle-container d-flex gap-2">
+        <Form.CheckboxSet
+          name="course-status-filters"
+          onChange={handleFilterChange}
+          value={filters}
+          disabled={!hasCourses}
+        >
+          <div className="d-flex" style={{ gap: '1rem' }}>
+            <input
+              type="checkbox"
+              value="inProgress"
+              id="filter-inProgress"
+              checked={filters.includes('inProgress')}
+              onChange={handleFilterChange}
+              className="visually-hidden"
+            />
+            <label
+              htmlFor="filter-inProgress"
+              className={`filter-pill ${filters.includes('inProgress') ? 'active' : ''}`}
             >
-              <div className="p-1 mr-3">
-                <b>{formatMessage(messages.refine)}</b>
-              </div>
-              <hr />
-              <div className="filter-form-row">
-                <FilterForm {...{ filters, handleFilterChange }} />
-              </div>
-              {/* <div className="filter-form-row text-left m-1">
-                <SortForm {...{ sortBy, handleSortChange }} />
-              </div> */}
-              <div className="pgn__modal-close-container">
-                <ModalCloseButton variant="tertiary" onClick={close}>
-                  <Icon src={Close} />
-                </ModalCloseButton>
-              </div>
-            </Sheet>
-          ) : (
-            <ModalPopup
-              positionRef={target}
-              isOpen={isOpen}
-              onClose={close}
-              placement="bottom-end"
+              In Progress
+              <span className="filter-pill-count">
+                {filters.includes('inProgress') ? `(${courseCount})` : ''}
+              </span>
+            </label>
+
+            <input
+              type="checkbox"
+              value="done"
+              id="filter-done"
+              checked={filters.includes('done')}
+              onChange={handleFilterChange}
+              className="visually-hidden"
+            />
+            <label
+              htmlFor="filter-done"
+              className={`filter-pill ${filters.includes('done') ? 'active' : ''}`}
             >
-              <div
-                id="course-filter-controls-card"
-                className="bg-white p-3 rounded shadow d-flex flex-row"
-              >
-                <div className="filter-form-col">
-                  <FilterForm {...{ filters, handleFilterChange }} />
-                </div>
-                {/* <hr className="h-100 bg-primary-200 mx-3 my-0" />
-                <div className="filter-form-col text-left m-1">
-                  <SortForm {...{ sortBy, handleSortChange }} />
-                </div> */}
-              </div>
-            </ModalPopup>
-          )}
-      </Form>
+              Complete {filters.includes('done') ? `(${courseCount})` : ''}
+            </label>
+          </div>
+        </Form.CheckboxSet>
+      </div>
     </div>
   );
 };
 CourseFilterControls.propTypes = {
-  // sortBy: PropTypes.string.isRequired,
   setSortBy: PropTypes.func.isRequired,
   filters: PropTypes.arrayOf(PropTypes.string).isRequired,
 };

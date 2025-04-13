@@ -30,6 +30,11 @@ export const useCourseFilterControlsData = ({
 
   const handleFilterChange = ({ target: { checked, value } }) => {
     const update = checked ? addFilter : removeFilter;
+    if (value === 'inProgress') {
+      removeFilter('done');
+    } else if (value === 'done') {
+      removeFilter('inProgress');
+    }
     update(value);
   };
   const handleSortChange = ({ target: { value } }) => {

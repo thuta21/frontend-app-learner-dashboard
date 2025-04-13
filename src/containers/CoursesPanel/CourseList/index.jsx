@@ -2,9 +2,9 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 import { Pagination } from '@openedx/paragon';
-import {
-  ActiveCourseFilters,
-} from 'containers/CourseFilterControls';
+// import {
+//   ActiveCourseFilters,
+// } from 'containers/CourseFilterControls';
 import CourseCard from 'containers/CourseCard';
 
 import { useIsCollapsed } from './hooks';
@@ -13,17 +13,27 @@ import '../index.scss';
 
 export const CourseList = ({ courseListData }) => {
   const {
-    filterOptions, setPageNumber, numPages, showFilters, visibleList,
+    // filterOptions,
+    setPageNumber,
+    numPages,
+    // showFilters,
+    visibleList,
   } = courseListData;
+
+  React.useEffect(() => {
+    localStorage.setItem('courseCount', visibleList.length);
+  }, [visibleList.length]);
 
   const isCollapsed = useIsCollapsed();
   return (
     <>
-      {showFilters && (
+      {/* {showFilters && (
         <div id="course-list-active-filters-container">
           <ActiveCourseFilters {...filterOptions} />
         </div>
-      )}
+      )} */}
+
+      {/* {visibleList.length} */}
 
       <div className="parent">
         {visibleList.map(({ cardId }) => (
