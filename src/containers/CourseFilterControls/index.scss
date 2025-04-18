@@ -81,3 +81,44 @@
   clip: rect(0, 0, 0, 0);
   white-space: nowrap;
 }
+
+.filter-pill-container {
+  display: flex;
+  gap: 0.5rem;
+}
+
+@media (max-width: 425px) {
+  .filter-pill-container {
+    display: block !important;
+  }
+  .course-list-heading-container {
+    padding: 10px 34px !important;
+  }
+  .learning-tabs__title {
+    font-size: 24px;
+    margin-bottom: 24px;
+  }
+}
+
+@media (max-width: 768px) {
+  .course-list-heading-container {
+    padding: 18px 42px !important;
+  }
+  .learning-tabs__title {
+    font-size: 28px;
+    margin-bottom: 24px;
+  }
+}
+
+@media (max-width: 375px) {
+  .filter-pill-container {
+    display: block !important;
+  }
+  .course-list-heading-container {
+    padding: 10px !important;
+  }
+  .learning-tabs__title {
+    font-size: 24px;
+    margin-bottom: 24px;
+  }
+}

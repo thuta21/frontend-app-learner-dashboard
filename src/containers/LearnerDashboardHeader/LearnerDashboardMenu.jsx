@@ -11,12 +11,6 @@ const getLearnerHeaderMenu = (
   exploreCoursesClick,
 ) => ({
   mainMenu: [
-    {
-      type: 'item',
-      href: '/',
-      content: formatMessage(messages.course),
-      isActive: true,
-    },
     ...(getConfig().ENABLE_PROGRAMS ? [{
       type: 'item',
       href: `${urls.programsUrl()}`,
@@ -29,6 +23,12 @@ const getLearnerHeaderMenu = (
       onClick: (e) => {
         exploreCoursesClick(e);
       },
+    },
+    {
+      type: 'item',
+      href: '/learner-dashboard',
+      content: formatMessage(messages.course),
+      isActive: true,
     },
   ],
   secondaryMenu: [
@@ -47,16 +47,16 @@ const getLearnerHeaderMenu = (
           href: `${getConfig().ACCOUNT_PROFILE_URL}/u/${authenticatedUser?.username}`,
           content: formatMessage(messages.profile),
         },
-        {
-          type: 'item',
-          href: `${getConfig().ACCOUNT_SETTINGS_URL}`,
-          content: formatMessage(messages.account),
-        },
-        ...(getConfig().ORDER_HISTORY_URL ? [{
-          type: 'item',
-          href: getConfig().ORDER_HISTORY_URL,
-          content: formatMessage(messages.orderHistory),
-        }] : []),
+        // {
+        //   type: 'item',
+        //   href: `${getConfig().ACCOUNT_SETTINGS_URL}`,
+        //   content: formatMessage(messages.account),
+        // },
+        // ...(getConfig().ORDER_HISTORY_URL ? [{
+        //   type: 'item',
+        //   href: getConfig().ORDER_HISTORY_URL,
+        //   content: formatMessage(messages.orderHistory),
+        // }] : []),
       ],
     },
     {

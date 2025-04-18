@@ -59,7 +59,7 @@ export const CourseFilterControls = ({
           value={filters}
           disabled={!hasCourses}
         >
-          <div className="d-flex" style={{ gap: '1rem' }}>
+          <div className="filter-pill-container">
             <input
               type="checkbox"
               value="inProgress"
