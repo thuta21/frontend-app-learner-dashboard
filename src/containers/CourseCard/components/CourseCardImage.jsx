@@ -34,7 +34,6 @@ export const CourseCardImage = ({ cardId, orientation }) => {
           borderTopRightRadius: '12px',
         }}
         src={bannerImgSrc || '/course.jpg'}
-        onError={(e) => { e.target.onerror = null; e.target.src = '/course.jpg'; }}
         alt={formatMessage(messages.bannerAlt)}
       />
       {
