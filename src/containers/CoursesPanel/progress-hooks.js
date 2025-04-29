@@ -24,11 +24,10 @@ export const useCourseProgressData = (courseId) => {
   }, [courseId]);
 
   // Calculate completion percentage
-  const completionPercentage = progressData?.completion_summary
-    ? Math.round((progressData.completion_summary.complete_count
-            / (progressData.completion_summary.complete_count
-            + progressData.completion_summary.incomplete_count
-            + progressData.completion_summary.locked_count)) * 100)
+  const summary = progressData?.completion_summary;
+
+  const completionPercentage = summary ? Math.round((summary.complete_count
+      / (summary.complete_count + summary.incomplete_count + summary.locked_count)) * 100) || 0
     : 0;
 
   return {
