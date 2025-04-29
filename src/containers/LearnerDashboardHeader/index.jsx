@@ -1,6 +1,6 @@
 import React from 'react';
 
-import MasqueradeBar from 'containers/MasqueradeBar';
+// import MasqueradeBar from 'containers/MasqueradeBar';
 import { AppContext } from '@edx/frontend-platform/react';
 // import Header from '@edx/frontend-component-header';
 import { reduxHooks } from 'hooks';
@@ -41,7 +41,7 @@ export const LearnerDashboardHeader = () => {
         secondaryMenuItems={learnerHomeHeaderMenu.secondaryMenu}
         userMenuItems={learnerHomeHeaderMenu.userMenu}
       /> */}
-      <MasqueradeBar />
+      {/* <MasqueradeBar /> */}
     </>
   );
 };

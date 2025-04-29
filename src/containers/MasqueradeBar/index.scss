@@ -1,4 +1,5 @@
 @import "@openedx/paragon/scss/core/core";
+@import "variables";
 
 .masquerade-bar {
   display: flex;
@@ -27,6 +28,11 @@
   .masquerade-chip {
     padding: map-get($spacers, 2) map-get($spacers, 3);
     font-size: $font-size-base;
+  }
+
+  .btn-brand {
+    background-color: $app-primary-500 !important;
+    border-color: $app-primary-500 !important;
   }
 }
 

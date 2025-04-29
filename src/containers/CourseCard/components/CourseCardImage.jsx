@@ -8,6 +8,7 @@ import track from 'tracking';
 import { reduxHooks } from 'hooks';
 import verifiedRibbon from 'assets/verified-ribbon.png';
 import useActionDisabledState from './hooks';
+import placeholder from 'assets/course.jpg';
 
 import messages from '../messages';
 
@@ -33,7 +34,13 @@ export const CourseCardImage = ({ cardId, orientation }) => {
           borderTopLeftRadius: '12px',
           borderTopRightRadius: '12px',
         }}
-        src={bannerImgSrc || '/course.jpg'}
+        src={bannerImgSrc || placeholder}
+        onError={(e) => {
+          if (!e.target.dataset.fallback) {
+            e.target.src = placeholder;
+            e.target.dataset.fallback = 'true'; // Prevent retry loops
+          }
+        }}
         alt={formatMessage(messages.bannerAlt)}
       />
       {
