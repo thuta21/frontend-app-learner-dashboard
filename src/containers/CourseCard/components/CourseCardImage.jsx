@@ -7,8 +7,8 @@ import { Badge } from '@openedx/paragon';
 import track from 'tracking';
 import { reduxHooks } from 'hooks';
 import verifiedRibbon from 'assets/verified-ribbon.png';
-import useActionDisabledState from './hooks';
 import placeholder from 'assets/course.jpg';
+import useActionDisabledState from './hooks';
 
 import messages from '../messages';
 
