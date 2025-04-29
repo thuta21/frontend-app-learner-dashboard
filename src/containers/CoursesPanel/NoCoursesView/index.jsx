@@ -26,7 +26,7 @@ export const NoCoursesView = () => {
         {formatMessage(messages.exploreCoursesPrompt)}
       </p>
       <Button
-        variant="brand"
+        variant="success"
         as="a"
         href={baseAppUrl(courseSearchUrl)}
         iconBefore={Search}
