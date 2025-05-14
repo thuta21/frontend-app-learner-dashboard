@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 // Col, Row
-import { Container } from '@openedx/paragon';
+// import { Container } from '@openedx/paragon';
 
 // import WidgetSidebarSlot from 'plugin-slots/WidgetSidebarSlot';
 
@@ -36,7 +36,7 @@ export const DashboardLayout = ({ children }) => {
     : columnConfig.courseList.noSidebar;
 
   return (
-    <Container fluid size="xl">
+    <div className="container-fluid" style={{ maxWidth: '1600px', margin: '0 auto' }}>
       {/* <Row> */}
       <div {...courseListColumnProps} className="course-list-column">
         {children}
@@ -47,7 +47,7 @@ export const DashboardLayout = ({ children }) => {
           <WidgetSidebarSlot />
         </Col> */}
       {/* </Row> */}
-    </Container>
+    </div>
   );
 };
 DashboardLayout.propTypes = {
