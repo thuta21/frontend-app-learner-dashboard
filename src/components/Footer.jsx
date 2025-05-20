@@ -15,8 +15,13 @@ const Footer = () => (
             <img src={logo} alt="Medcenter Cambodia" height="40" />
           </div>
           <p style={{ fontSize: '16px' }}>
-            All material on this website is protected by copyright.<br />
-            Copyright © 2025 by Ang Firma.
+            All information contained in and produced by Ang Firma Co., Ltd is provided for educational purposes only.
+            This information should not be used for the diagnosis or treatment of any health problem or disease.
+            <br />
+            THIS INFORMATION IS NOT INTENDED TO REPLACE CLINICAL JUDGMENT OR GUIDE INDIVIDUAL PATIENT
+            CARE IN ANY MANNER.
+            <br />
+            Copyright @{new Date().getFullYear()} by AngFirma.
           </p>
         </div>
         <div className="footer-right">
