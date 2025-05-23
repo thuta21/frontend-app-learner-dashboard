@@ -17,7 +17,6 @@ const Footer = () => (
           <p style={{ fontSize: '16px' }}>
             All information contained in and produced by Ang Firma Co., Ltd is provided for educational purposes only.
             This information should not be used for the diagnosis or treatment of any health problem or disease.
-            <br />
             THIS INFORMATION IS NOT INTENDED TO REPLACE CLINICAL JUDGMENT OR GUIDE INDIVIDUAL PATIENT
             CARE IN ANY MANNER.
             <br />
